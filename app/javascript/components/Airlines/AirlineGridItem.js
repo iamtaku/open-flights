@@ -8,6 +8,8 @@ const Card = styled.div`
 `;
 const AirlineLogo = styled.div`
   width: 50px;
+  margin: 0 auto;
+  padding-top: 8px;
   img {
     height: 50px;
     width: 50px;
