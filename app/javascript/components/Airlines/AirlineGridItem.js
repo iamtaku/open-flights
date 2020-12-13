@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { BrowserRouter as Router, Link } from "react-router-dom";
 
 const AirlineGridItem = (props) => {
   return (
@@ -10,7 +10,7 @@ const AirlineGridItem = (props) => {
       <div className="airline-name">{props.attributes.name}</div>
       <div className="airline-score">{props.attributes.avg_score}</div>
       <div className="airline-link">
-        <Link to={`/airlines/${props.attribute.slug}`}>View Airline</Link>
+        <Link to={`/airlines/${props.attributes.slug}`}>View Airline</Link>
       </div>
     </div>
   );

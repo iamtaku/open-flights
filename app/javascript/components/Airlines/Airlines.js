@@ -15,11 +15,12 @@ const Airlines = () => {
     // use the setairlines method to update our state
   }, [airlines.length]);
   console.log(airlines);
-  const list = airlines.map((item) => {
+  const grid = airlines.map((item) => {
     return (
-      <li key={item.attributes.name}>
-        <AirlineGridItem item />
-      </li>
+      <AirlineGridItem
+        key={item.attributes.name}
+        attributes={item.attributes}
+      />
     );
   });
 
@@ -31,7 +32,7 @@ const Airlines = () => {
       </div>
       <div>
         <div className="grid">
-          <ul>{list}</ul>
+          <ul>{grid}</ul>
         </div>
       </div>
     </div>
