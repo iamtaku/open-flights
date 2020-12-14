@@ -1,8 +1,5 @@
 import React from "react";
 import styled from "styled-components";
-import Grey from "./Stars/Grey";
-import Hover from "./Stars/Hover";
-import Selected from "./Stars/Selected";
 
 const RatingContainer = styled.div`
   text-align: center;
