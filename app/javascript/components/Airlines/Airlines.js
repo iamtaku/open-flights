@@ -39,7 +39,7 @@ const Airlines = () => {
     //get all airlines from api
     // use the setairlines method to update our state
   }, [airlines.length]);
-  console.log(airlines);
+  // console.log(airlines);
   const grid = airlines.map((item) => {
     return (
       <AirlineGridItem
