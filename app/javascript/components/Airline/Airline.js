@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import styled from "styled-components";
 import Header from "./Header";
+import ReviewForm from "./ReviewForm";
 
 const Wrapper = styled.div`
   margin: 0 auto;
