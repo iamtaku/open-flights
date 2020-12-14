@@ -9,9 +9,7 @@ module.exports = (env) => {
     devtool: prod ? "source-map" : "eval-cheap-module-source-map",
 
     context: path.resolve(__dirname, "../../app/javascript/packs"),
-    entry: {
-      application: "application.js",
-    },
+    entry: "./app/javascript/packs/application.js",
     resolve: {
       extensions: [".js", ".jsx"],
     },
