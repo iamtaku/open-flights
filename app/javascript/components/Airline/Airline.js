@@ -29,6 +29,29 @@ const Airline = ({ match }) => {
   const { slug } = match.params;
   const url = `/api/v1/airlines/${slug}`;
 
+  const handleChange = (e) => {
+    e.preventDefault();
+    setReviews(Object.assign({}, reviews, { [e.target.name]: e.target.value }));
+    // console.log(reviews);
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const csrfToken = document.querySelector("[name=csrf-token]").content;
+    // console.log(csrfToken);
+    axios.defaults.headers.common["X-CSRF-Token"] = csrfToken;
+    const airline_id = airline.data.id;
+    axios
+      .post(`/api/v1/reviews`, { reviews, airline_id })
+      .then((response) => {
+        console.log(response);
+        const included = [...airline.included, response.data.data];
+        setAirline({ ...airline, included });
+        setReview({ title: "", description: "", score: 0 });
+      })
+      .catch((error) => console.log(error));
+  };
+
   useEffect(() => {
     axios
       .get(url)
@@ -43,20 +66,27 @@ const Airline = ({ match }) => {
   return (
     <div>
       <Wrapper>
-        <Column>
-          <Main>
-            {loaded && (
-              <Header
+        {loaded && (
+          <>
+            <Column>
+              <Main>
+                <Header
+                  attributes={airline.data.attributes}
+                  reviews={airline.included}
+                />
+                <div className="reviews"></div>
+              </Main>
+            </Column>
+            <Column>
+              <ReviewForm
+                handleSubmit={handleSubmit}
+                handleChange={handleChange}
                 attributes={airline.data.attributes}
-                reviews={airline.included}
+                review={reviews}
               />
-            )}
-            <div className="reviews"></div>
-          </Main>
-        </Column>
-        <Column>
-          <div className="review-form"></div>
-        </Column>
+            </Column>
+          </>
+        )}
       </Wrapper>
     </div>
   );
