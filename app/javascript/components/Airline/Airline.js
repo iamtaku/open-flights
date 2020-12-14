@@ -24,15 +24,15 @@ const Main = styled.div`
 
 const Airline = ({ match }) => {
   const [airline, setAirline] = useState({});
-  const [reviews, setReviews] = useState({});
+  const [review, setReview] = useState({});
   const [loaded, setLoaded] = useState(false);
   const { slug } = match.params;
   const url = `/api/v1/airlines/${slug}`;
 
   const handleChange = (e) => {
     e.preventDefault();
-    setReviews(Object.assign({}, reviews, { [e.target.name]: e.target.value }));
-    // console.log(reviews);
+    setReview(Object.assign({}, review, { [e.target.name]: e.target.value }));
+    // console.log(review);
   };
 
   const handleSubmit = (e) => {
@@ -42,7 +42,7 @@ const Airline = ({ match }) => {
     axios.defaults.headers.common["X-CSRF-Token"] = csrfToken;
     const airline_id = airline.data.id;
     axios
-      .post(`/api/v1/reviews`, { reviews, airline_id })
+      .post(`/api/v1/reviews`, { review, airline_id })
       .then((response) => {
         console.log(response);
         const included = [...airline.included, response.data.data];
@@ -50,6 +50,11 @@ const Airline = ({ match }) => {
         setReview({ title: "", description: "", score: 0 });
       })
       .catch((error) => console.log(error));
+  };
+
+  const setRating = (score, e) => {
+    e.preventDefault();
+    setReview({ ...review, score });
   };
 
   useEffect(() => {
@@ -72,17 +77,18 @@ const Airline = ({ match }) => {
               <Main>
                 <Header
                   attributes={airline.data.attributes}
-                  reviews={airline.included}
+                  review={airline.included}
                 />
-                <div className="reviews"></div>
+                <div className="review"></div>
               </Main>
             </Column>
             <Column>
               <ReviewForm
                 handleSubmit={handleSubmit}
                 handleChange={handleChange}
+                setRating={setRating}
                 attributes={airline.data.attributes}
-                review={reviews}
+                review={review}
               />
             </Column>
           </>

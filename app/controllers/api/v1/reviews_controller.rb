@@ -31,7 +31,7 @@ module Api
       end
 
       def review_params
-        params.require(:reviews).permit(:title, :description, :airline_id, :score)
+        params.require(:review).permit(:title, :description, :airline_id, :score)
       end
     end
   end
