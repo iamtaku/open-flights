@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import styled from "styled-components";
-import AirlineGridItem from "./AirlineGridItem";
+import AirlineGridItem from "./airlineGridItem";
 
 const Home = styled.div`
   text-align: center;

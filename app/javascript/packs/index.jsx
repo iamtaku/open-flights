@@ -4,7 +4,7 @@
 
 import React from "react";
 import ReactDOM from "react-dom";
-import App from "../components/App.js";
+import App from "../components/app.js";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 
 document.addEventListener("DOMContentLoaded", () => {
