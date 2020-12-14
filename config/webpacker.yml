@@ -4,14 +4,14 @@ default: &default
   source_path: app/javascript
   source_entry_path: packs
   public_root_path: public
-  public_output_path: packs
+  public_output_path: assets/packs
   cache_path: tmp/cache/webpacker
   check_yarn_integrity: false
   webpack_compile_output: true
 
   # Additional paths webpack should lookup modules
   # ['app/assets', 'engine/foo/app/assets']
-  additional_paths: ["app/javascript"]
+  # additional_paths: ["app/javascript"]
 
   resolved_paths: []
 
