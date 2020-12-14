@@ -13,6 +13,7 @@ const RatingContainer = styled.div`
   background: #fff;
 `;
 const RatingBox = styled.div`
+  margin-top: 12px;
   background: #fff;
   display: flex;
   width: 100%;
@@ -44,7 +45,62 @@ const RatingBox = styled.div`
   }
 `;
 
-const RatingTitles = styled.div``;
+const Field = styled.div`
+  border-radius: 4px;
+
+  input {
+    min-height: 48px;
+    border-radius: 4px;
+    border: 1px solid #e6e6e6;
+    margin: 0 0 12px 0;
+    padding: 12px;
+    width: 96%;
+    font-size: 16px;
+  }
+
+  textarea {
+    width: 100%;
+    min-height: 80px;
+    border-radius: 4px;
+    border: 1px solid #e6e6e6;
+    margin: 12px 0;
+    padding: 12px;
+  }
+`;
+const Wrapper = styled.div`
+  background: #fff;
+  padding: 24px;
+  background: #000;
+  padding-top: 100px;
+`;
+const SubmitBtn = styled.button`
+  margin-top: 8px;
+  width: 100%;
+  color: #fff;
+  background: #333;
+  border-radius: 4px;
+  padding: 12px;
+  font-size: 16px;
+  cursor: pointer;
+  border: 1px solid #fff;
+  transition: ease-in-out 0.1s;
+  &:hover {
+    background: #fff;
+    color: #000;
+    border: 1px solid #fff;
+  }
+`;
+const Headline = styled.div`
+  padding: 20px;
+  font-size: 32px;
+  font-weight: bold;
+  color: #fff;
+`;
+const RatingTitle = styled.div`
+  font-size: 20px;
+  padding-bottom: 20px;
+  font-weight: bold;
+`;
 
 const ReviewForm = ({
   handleSubmit,
@@ -71,10 +127,10 @@ const ReviewForm = ({
   });
 
   return (
-    <div className="wrapper">
+    <Wrapper>
       <form onSubmit={handleSubmit}>
-        <div>Share a review for {attributes.name}!</div>
-        <div className="field">
+        <Headline>Share a review for {attributes.name}!</Headline>
+        <Field>
           <input
             type="text"
             name="title"
@@ -82,8 +138,8 @@ const ReviewForm = ({
             onChange={handleChange}
             value={review.title || ""}
           />
-        </div>
-        <div className="field">
+        </Field>
+        <Field>
           <input
             type="text"
             name="description"
@@ -91,16 +147,16 @@ const ReviewForm = ({
             onChange={handleChange}
             value={review.description || ""}
           />
-        </div>
-        <div className="field">
+        </Field>
+        <Field>
           <RatingContainer>
-            <div className="rating-title-text">Rate this airline!</div>
+            <RatingTitle>Rate this airline!</RatingTitle>
             <RatingBox>{ratingOptions}</RatingBox>
           </RatingContainer>
-        </div>
-        <button type="submit">Submit your Review</button>
+        </Field>
+        <SubmitBtn type="submit">Submit your Review</SubmitBtn>
       </form>
-    </div>
+    </Wrapper>
   );
 };
 
